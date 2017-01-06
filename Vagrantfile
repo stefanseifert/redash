@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.synced_folder "./", "/opt/redash/current"
   
-  config.vm.network "forwarded_port", guest: 8080, host: 9001
+  #config.vm.network "forwarded_port", guest: 5000, host: 9001
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]

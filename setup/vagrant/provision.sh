@@ -17,8 +17,7 @@ sudo apt-get install -y nodejs build-essential
 sudo apt-get install -y git
 
 # install some frontend tools globally
-sudo npm install -g webpack
-sudo npm install -g webpack-dev-server
+sudo npm install -g bower
 
 cd /opt/redash/current
 cp /opt/redash/current/setup/vagrant/files/env /opt/redash/current/.env
@@ -39,5 +38,4 @@ bin/run ./manage.py users create --admin --password admin "Admin" "admin"
 redis-cli -n 1 FLUSHALL
 
 #prepare client
-cd /opt/redash/current/client
 npm install --no-bin-links
