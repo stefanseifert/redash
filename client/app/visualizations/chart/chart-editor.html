@@ -18,8 +18,11 @@
       <label class="control-label">Chart Type</label>
       <div ng-if="chartTypes"><!--the if is a weird workaround-->
         <ui-select ng-model="options.globalSeriesType" on-select="chartTypeChanged()">
-          <ui-select-match placeholder="Choose chart type..."><i class="fa fa-{{$select.selected.value.icon}}"></i>
-            {{$select.selected.value.name}}
+          <ui-select-match placeholder="Choose chart type...">
+            <div>
+              <i class="fa fa-{{$select.selected.value.icon}}"></i>
+              {{$select.selected.value.name}}
+            </div>
           </ui-select-match>
           <ui-select-choices repeat="info.chartType as (chartType, info) in chartTypes">
             <div><i class="fa fa-{{info.value.icon}}"></i><span> </span><span
@@ -59,26 +62,26 @@
     <div class="form-group" ng-if="options.globalSeriesType != 'custom'">
       <label class="control-label">Group by</label>
       <ui-select name="groupby" ng-model="form.groupby" class="clearable">
-        <ui-select-match allow-clear="true" placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="Choose column...">
+          {{$select.selected}}
+        </ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.xAxisColumn">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
         </ui-select-choices>
       </ui-select>
-      <button class='btn btn-default m-t-10' ng-disabled='!form.groupby' ng-click='clearGroupBy()'>Clear</button>
     </div>
 
     <div class="form-group" ng-if="options.globalSeriesType != 'custom'">
       <label class="control-label">Errors column</label>
 
       <ui-select name="errorColumn" ng-model="form.errorColumn">
-        <ui-select-match placeholder="Choose column...">{{$select.selected}}</ui-select-match>
+        <ui-select-match allow-clear="true" placeholder="Choose column...">{{$select.selected}}</ui-select-match>
         <ui-select-choices repeat="column in columnNames | remove:form.yAxisColumns | remove:form.groupby">
           <span ng-bind-html="column | highlight: $select.search"></span><span> </span>
           <small class="text-muted" ng-bind="columns[column].type"></small>
         </ui-select-choices>
       </ui-select>
-      <button class='btn btn-default m-t-10' ng-disabled='!form.errorColumn' ng-click='clearErrorColumn()'>Clear</button>
     </div>
 
     <div class="checkbox" ng-if="options.globalSeriesType != 'custom'">
@@ -218,8 +221,11 @@
         </td>
         <td style="padding: 3px; width: 105px;">
           <ui-select ng-model="options.seriesOptions[name].type">
-            <ui-select-match placeholder="Chart Type"><i class="fa fa-{{$select.selected.value.icon}}"></i>
-              {{$select.selected.value.name}}
+            <ui-select-match placeholder="Chart Type">
+              <div>
+                <i class="fa fa-{{$select.selected.value.icon}}"></i>
+                {{$select.selected.value.name}}
+              </div>
             </ui-select-match>
             <ui-select-choices repeat="info.chartType as (chartType, info) in chartTypes">
               <div><i class="fa fa-{{info.value.icon}}"></i><span> </span><span
