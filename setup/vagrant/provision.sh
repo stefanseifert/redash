@@ -3,9 +3,15 @@
 sudo apt-get -y update
 
 # setup dependencies
-# 1. python 2.7:
-sudo apt-get install -y python-pip python-dev
-sudo pip install --upgrade pip
+# 1. python 2.7: (newer version 2.7.12 to ensure ds requirements can be installed)
+sudo apt-get install -y build-essential checkinstall
+sudo apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+cd /usr/src
+sudo wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz
+sudo tar xzf Python-2.7.12.tgz
+cd Python-2.7.12
+sudo ./configure
+sudo make altinstall
 # 2. redis
 sudo apt-get install -y redis-server
 # 3. PostgreSQL
@@ -25,10 +31,9 @@ cp /opt/redash/current/setup/vagrant/files/env /opt/redash/current/.env
 bower install
 
 #install requirements
-sudo pip install -r /opt/redash/current/requirements_dev.txt
-sudo pip install -r /opt/redash/current/requirements.txt
-sudo pip install -r /opt/redash/current/requirements_all_ds.txt
-sudo pip install pymongo==3.2.1
+sudo pip2.7 install -r /opt/redash/current/requirements_dev.txt
+sudo pip2.7 install -r /opt/redash/current/requirements.txt
+sudo pip2.7 install -r /opt/redash/current/requirements_all_ds.txt
 
 #create database
 sudo -u postgres createuser vagrant --no-superuser --no-createdb --no-createrole
