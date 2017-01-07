@@ -25,7 +25,7 @@ webpack-dev-server --content-base app --host 0.0.0.0
 * Start two services for background tasks
 
 ```
-cd /opt/redash/current/client
+cd /opt/redash/current
 bin/run celery worker --app=redash.worker --beat -c2 -Qqueries,celery --maxtasksperchild=10 -Ofair
 bin/run celery worker --app=redash.worker -c2 -Qscheduled_queries --maxtasksperchild=10 -Ofair
 ```
